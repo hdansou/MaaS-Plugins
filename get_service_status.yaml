@@ -5,7 +5,7 @@ disabled    : false
 period      : 60
 timeout     : 30
 details     :
-    file  : !str service_status.ps1
+    file  : !str get_service_status.ps1
     args  : [ServiceName]
 alarms      :
     status   :
