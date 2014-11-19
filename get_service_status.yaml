@@ -1,0 +1,17 @@
+
+type        : agent.plugin
+label       : ServiceName service
+disabled    : false
+period      : 60
+timeout     : 30
+details     :
+    file  : !str service_status.ps1
+    args  : [ServiceName]
+alarms      :
+    status   :
+        label                 : Service Status
+        notification_plan_id  : npManaged
+        criteria              : |
+            if (metric['service_status'] != 'running') {
+                return new AlarmStatus(CRITICAL, 'service: service is not running.'); }
+            return new AlarmStatus(OK, 'service: service is running');
